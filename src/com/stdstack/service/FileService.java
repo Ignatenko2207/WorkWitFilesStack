@@ -85,4 +85,27 @@ public class FileService {
         byte[] bytes = getBytesFromFile(fromFile);
         writeBytesToFile(bytes, toFile);
     }
+
+    public static void writeObjectToFile(ConnectionInfo connectionInfo, String fileName){
+        try (FileOutputStream fileOutputStream = new FileOutputStream(FILE_DIR + FILE_SEP + fileName);
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+
+            objectOutputStream.writeObject(connectionInfo);
+            objectOutputStream.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static ConnectionInfo readObjectFromFile(String fileName){
+        ConnectionInfo connectionInfo = null;
+        try (FileInputStream fileInputStream = new FileInputStream(FILE_DIR + FILE_SEP + fileName);
+             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+
+            connectionInfo = (ConnectionInfo) objectInputStream.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return connectionInfo;
+    }
 }
