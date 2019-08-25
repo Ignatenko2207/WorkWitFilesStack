@@ -10,7 +10,7 @@ import java.util.List;
 public class ApplicationRunner {
 
     public static void main(String[] args){
-//
+
 //        boolean newProcess = true;
 //        boolean append = false;
 //        for (int i = 0; i < 10; i++) {
@@ -25,13 +25,17 @@ public class ApplicationRunner {
 //        List<ConnectionInfo> connectionInfoList = FileService.readInfoFromFile("connections.txt");
 //        System.out.println(connectionInfoList.size());
 
-        int number = 12345;
+//        int number = 12345;
+//
+//        System.out.println(getSumByDiv(number));
+//
+//        number = 12345;
+//
+//        System.out.println(getSumByTypeFormat(number));
 
-        System.out.println(getSumByDiv(number));
+//        FileService.copyFile("cat.jpg", "cat-copy.jpg");
 
-        number = 12345;
 
-        System.out.println(getSumByTypeFormat(number));
     }
 
     private static int getSumByTypeFormat(int number) {

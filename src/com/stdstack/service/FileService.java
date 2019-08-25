@@ -3,6 +3,7 @@ package com.stdstack.service;
 import com.stdstack.model.ConnectionInfo;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,5 +57,32 @@ public class FileService {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static byte[] getBytesFromFile(String fileName){
+        File file = new File(FILE_DIR + FILE_SEP + fileName);
+        byte[] bytes = new byte[0];
+        try {
+            bytes = Files.readAllBytes(file.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bytes;
+    }
+
+    public  static void writeBytesToFile(byte[] bytes, String fileName){
+        checkDir();
+
+        try (FileOutputStream fileOutputStream = new FileOutputStream(FILE_DIR + FILE_SEP + fileName)) {
+            fileOutputStream.write(bytes);
+            fileOutputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void copyFile(String fromFile, String toFile){
+        byte[] bytes = getBytesFromFile(fromFile);
+        writeBytesToFile(bytes, toFile);
     }
 }
